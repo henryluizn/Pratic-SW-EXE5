@@ -28,8 +28,6 @@ class Disciplina{
 		void inicializaArray();
 		int getQtdAlunos();
 		void printVetorAlunos();
-		// TODO
-		bool removerAluno(Pessoa* aluno);
 
 	// ------------------------------------------	
 	private:
