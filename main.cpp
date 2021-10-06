@@ -5,48 +5,42 @@
 #include "Pessoa.hpp"
 #include "Disciplina.hpp"
 
-// int getProxIndiceLivre(Disciplina * d1)
-// {
-// 	Pessoa* vetor_alunos{d1->getVetorAlunos()};
-// 	for (int i = 0; i < 50; i++)
-// 	{
-// 		if (vetor_alunos[i] == nullptr){
-// 			std::cout << "Pessoa vazia" << std::endl;
-// 		}
-// 	}
-	
-	
-// }
-
-
 
 int main(){
-	// Pessoa p1{"Joao", 11111111111, 20};
-
-	// p1.setNome("Maria");
-	// std::cout << p1.getNome() << '\t' << p1.getIdade() << '\t' <<  p1.getCpf() << std::endl;
-
-	// std::cout << "Materia: " << d1.getNome() << std::endl;
-
-	// std::cout << "Nome do professor: " << d1.getProfessor()->getNome() << std::endl;
 
 	Pessoa* p1{new Pessoa{"Jonas"}};
+	std::cout << "Nova pessoa cadastrada: " << p1->getNome() << std::endl;
+
 	Pessoa* p2{new Pessoa};
+	p2->setNome("Mariquinha");
+	std::cout << "Nova pessoa cadastrada: " << p2->getNome() << std::endl;
 
 	Disciplina* d1{new Disciplina{"Orientacao a Objetos"}};
 	d1->setProfessor(p1);
 	
-	p2->setNome("Mariquinha");
 
-	std::cout << "Nome p2: " << p2->getNome() << std::endl;
-
-	std::cout << "Nome: " << p1->getNome() << std::endl;
+	if (d1->adicionarAluno(p1))
+	{
+		std::cout << "Aluno(a) " << p1->getNome() << " adicionado com sucesso!" << std::endl;		
+	}else{
+		std::cout << "Falha ao adicionar o aluno(a)" << std::endl;		
+	}
 	
+	if (d1->adicionarAluno(p2))
+	{
+		std::cout << "Aluno(a) " << p2->getNome() << " adicionado com sucesso!" << std::endl;		
+	}else{
+		std::cout << "Falha ao adicionar o aluno(a)" << std::endl;		
+	}
+	std::cout << "Impressao do vetor de alunos ANTES da atualizacao do nome do 2 aluno: " << std::endl;
+	d1->printVetorAlunos();
 
-	std::cout << "Nome professor antes da alteracao: " << d1->getNomeProfessor() << std::endl;
+	std::cout << "Troca de nome do aluno 2 para Jose" << std::endl;
+	p2->setNome("Jose");
+	std::cout << "Impressao do vetor de alunos APOS atualizacao do nome dp 2 aluno: " << std::endl;
 
-	p1->setNome("Marcos");
-	std::cout << "Nome professor depois da alteracao: " << d1->getNomeProfessor() << std::endl;
+	d1->printVetorAlunos();
 
+	
 	return 0;
 }

@@ -1,7 +1,9 @@
 #include "Disciplina.hpp"
+#include <iostream>
 
+// construtor modificado
 Disciplina::Disciplina(std::string nomeDisciplina)
-	:nome{nomeDisciplina}, alunos{new Pessoa[50]{nullptr}} {
+	:nome{nomeDisciplina}, qtd_alunos{0} {
 
 
 }
@@ -34,24 +36,51 @@ void Disciplina::setProfessor(Pessoa* novoProf)
 	professor = novoProf;
 }
 
+
+// -------- novas implementacoes ------------	
+
 std::string Disciplina::getNomeProfessor()
 {
 	return this->getProfessor()->getNome();
 }
-
-
-// bool adicionarAluno(Pessoa * novoAluno)
-// {
-
-Pessoa* Disciplina::getVetorAlunos()
-{
-	return this->alunos;
+	
+int Disciplina::getQtdAlunos(){
+	return this-> qtd_alunos;
 }
 
-// void Disciplina::inicializaArray(){
-// 	for (int i = 0; i < 50; i++)
-// 	{
-// 		alunos[i] = nullptr;
-// 	}
-	
-// }
+bool Disciplina::adicionarAluno(Pessoa* novoAluno)
+{
+	try
+	{
+		alunos[this->qtd_alunos] = novoAluno;
+		this->qtd_alunos+=1;
+
+		return true;
+	}
+	catch(const std::exception& e)
+	{
+		return false;
+	}
+}
+
+Pessoa** Disciplina::getVetorAlunos()
+{
+	return alunos;
+}
+
+
+void Disciplina::printVetorAlunos(){
+	try{
+		Pessoa** aluno_atual{getVetorAlunos()};
+		for (int i = 0; i < this->getQtdAlunos(); i++)
+		{
+			std::cout << "\t- Aluno: " << aluno_atual[i]->getNome() << std::endl;
+		}
+	}catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+}
+
+
+// ------------------------------------------	

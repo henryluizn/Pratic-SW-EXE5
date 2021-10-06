@@ -9,8 +9,9 @@
 
 class Disciplina{
 	public:
+	//construtor da classe
 		Disciplina(std::string nomeDisciplina);
-
+		
 		std::string getNome();
 		void setNome(std::string novoNome);
 		
@@ -20,17 +21,25 @@ class Disciplina{
 		Pessoa* getProfessor();
 		void setProfessor(Pessoa* novoProf);
 		
-	// novas implementacoes
+	// -------- novas implementacoes ------------
 		std::string getNomeProfessor();
 		bool adicionarAluno(Pessoa* novoAluno);
-		Pessoa * getVetorAlunos();
+		Pessoa** getVetorAlunos();
 		void inicializaArray();
-		
+		int getQtdAlunos();
+		void printVetorAlunos();
+		// TODO
+		bool removerAluno(Pessoa* aluno);
+
+	// ------------------------------------------	
 	private:
 		Pessoa* professor;
 		std::string nome;
 		unsigned short int cargaHoraria;
-	// novas implementacoes		
-		Pessoa* alunos;
+	// -------- novas implementacoes ------------
+		Pessoa* alunos[1000];
+		int qtd_alunos;
+	// ------------------------------------------	
+
 };
 #endif
